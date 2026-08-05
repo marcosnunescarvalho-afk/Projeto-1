@@ -1,48 +1,188 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-         content="width=device-width, initial-scale=1.0">
-        <title>blog</title>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interacao Digital Consciente</title>
+    <style>
+        /* RESET E VARIAVEIS ACCESIVEIS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #222;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* LAYOUT FLEXBOX PRINCIPAL */
+        header, footer {
+            background-color: #1a202c;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
         main {
-        <style>
-    main {
-    background-color: #FFFFFF;
-     color: #2aff23;
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-      padding : 16px;
-      border : 5px solid rgb(84, 11, 243);
-      main
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
 
-        { background-color: #183C63;
-    color: #FFFFFF;
-    max-width: 800px;
-    margin: 0 auto;
-    padding : 16px;
-    }
+        /* CARD DE INTERAÇÃO */
+        .card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
 
-    img{
-       width: 200px;
-       height: 200px;
-    }
-}
-}   </style>
+        .card-header h2 {
+            font-size: 1.5rem;
+            color: #2d3748;
+        }
 
-}
+        /* CONTÊINER DOS BOTÕES COM FLEXBOX */
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .btn-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* BOTÕES ACESSÍVEIS (Alto contraste e foco claro) */
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            background-color: #3182ce;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: #2b6cb0;
+        }
+
+        /* Foco visível para navegação por teclado */
+        button:focus {
+            outline: 3px solid #ecc94b;
+            outline-offset: 2px;
+        }
+
+        .counter {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* ALERTA ÉTICO / LÓGICA CONDICIONAL */
+        .alerta-etico {
+            background-color: #fffaf0;
+            border-left: 4px solid #dd6b20;
+            padding: 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            display: none; /* Escondido por padrão */
+        }
+    </style>
 </head>
 <body>
+
+    <!-- HTML SEMÂNTICO -->
     <header>
-        <h1> como valorizar o bitcoin</h1>
-        <p> vou compartinhar meu conhecimento como valorizar o bitcoin<p>
+        <h1>Plataforma de Engajamento Saudável</h1>
     </header>
+
     <main>
-    <img src="Gemini_Generated_Image_bqtxo8bqtxo8bqtx (1).png" alt=
-        <p> por: Marcos Antonio</p>
-         <p>Bem-vindos ao meu primeiro blog! e vou 
-                falar como valorizar o bitcoin</p>
-       </main>
-    </body>
+        <article class="card">
+            <header class="card-header">
+                <h2>Tecnologia e Bem-estar</h2>
+                <p>As interações digitais moldam nossa atenção. Use com moderação.</p>
+            </header>
+
+            <!-- SEÇÃO DE CONTADORES -->
+            <section class="actions">
+                <div class="btn-wrapper">
+                    <button id="btn-curtir" aria-label="Curtir esta publicação">👍 Curtir</button>
+                    <span class="counter" id="qtd-curtidas" aria-live="polite">0 curtidas</span>
+                </div>
+                
+                <div class="btn-wrapper">
+                    <button id="btn-compartilhar" aria-label="Compartilhar esta publicação">🔄 Compartilhar</button>
+                    <span class="counter" id="qtd-compartilhamentos" aria-live="polite">0 compartilhamentos</span>
+                </div>
+            </section>
+
+            <!-- ÁREA DE AVISO DINÂMICO (Acessibilidade com aria-live) -->
+            <div id="aviso-limite" class="alerta-etico" role="alert" aria-live="assertive">
+                <strong>Reflexão:</strong> Você já interagiu bastante com este conteúdo. Que tal fazer uma pausa das telas para descansar a mente?
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Desenvolvido com foco em Ética Digital e Acessibilidade.</p>
+    </footer>
+
+    <!-- JAVASCRIPT: MANIPULAÇÃO DO DOM E LÓGICA -->
+    <script>
+        // Seleção de elementos do DOM
+        const btnCurtir = document.getElementById('btn-curtir');
+        const btnCompartilhar = document.getElementById('btn-compartilhar');
+        const txtCurtidas = document.getElementById('qtd-curtidas');
+        const txtCompartilhamentos = document.getElementById('qtd-compartilhamentos');
+        const painelAviso = document.getElementById('aviso-limite');
+
+        // Variáveis de estado (contadores)
+        let curtidas = 0;
+        let compartilhamentos = 0;
+
+        // Função genérica para atualizar os textos dos contadores
+        function atualizarInterface() {
+            txtCurtidas.textContent = `${curtidas} curtidas`;
+            txtCompartilhamentos.textContent = `${compartilhamentos} compartilhamentos`;
+
+            // Lógica Condicional Ética: Alerta o usuário se a soma de interações passar de 5
+            if (curtidas + compartilhamentos >= 5) {
+                painelAviso.style.display = 'block';
+            }
+        }
+
+        // Implementação dos ouvintes de eventos (Interatividade)
+        btnCurtir.addEventListener('click', () => {
+            curtidas++;
+            atualizarInterface();
+        });
+
+        btnCompartilhar.addEventListener('click', () => {
+            compartilhamentos++;
+            atualizarInterface();
+        });
+    </script>
+</body>
 </html>
