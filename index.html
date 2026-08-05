@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interacao Digital Consciente</title>
+    <title>Simulador de Bitcoin Ético</title>
     <style>
-        /* RESET E VARIAVEIS ACCESIVEIS */
+        /* RESET E CORES DE ALTO CONTRASTE */
         * {
             margin: 0;
             padding: 0;
@@ -14,19 +14,18 @@
 
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #222;
-            line-height: 1.6;
+            background-color: #f7fafc;
+            color: #1a202c;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
         }
 
-        /* LAYOUT FLEXBOX PRINCIPAL */
+        /* ESTRUTURAÇÃO DE LAYOUT COM FLEXBOX */
         header, footer {
-            background-color: #1a202c;
+            background-color: #2d3748;
             color: #fff;
-            padding: 1rem;
+            padding: 1.5rem;
             text-align: center;
         }
 
@@ -38,76 +37,90 @@
             padding: 2rem;
         }
 
-        /* CARD DE INTERAÇÃO */
-        .card {
-            background: #fff;
+        /* CARD PRINCIPAL */
+        .crypto-card {
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
             padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
+            max-width: 450px;
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .card-header h2 {
-            font-size: 1.5rem;
-            color: #2d3748;
-        }
-
-        /* CONTÊINER DOS BOTÕES COM FLEXBOX */
-        .actions {
-            display: flex;
-            justify-content: space-between;
-            gap: 1rem;
-        }
-
-        .btn-wrapper {
-            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.5rem;
+            gap: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         }
 
-        /* BOTÕES ACESSÍVEIS (Alto contraste e foco claro) */
-        button {
+        /* ESTILIZAÇÃO E RESTRIÇÃO DA IMAGEM EXIGIDA */
+        .bitcoin-img {
+            width: 200px; /* Restrição exata de 200px */
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .info-preco {
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .destaque-preco {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #dd6b20;
+            display: block;
+            margin-top: 0.25rem;
+        }
+
+        /* FLEXBOX PARA ALINHAR BOTÃO E TEXTO */
+        .interacao-container {
+            display: flex;
             width: 100%;
-            padding: 0.75rem;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1rem;
+        }
+
+        button {
+            background-color: #dd6b20;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.25rem;
             font-size: 1rem;
             font-weight: bold;
-            color: #fff;
-            background-color: #3182ce;
-            border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
             transition: background 0.2s;
         }
 
         button:hover {
-            background-color: #2b6cb0;
+            background-color: #c05621;
         }
 
-        /* Foco visível para navegação por teclado */
+        /* Acessibilidade: Foco visível para navegação por teclado */
         button:focus {
-            outline: 3px solid #ecc94b;
+            outline: 3px solid #3182ce;
             outline-offset: 2px;
         }
 
-        .counter {
-            font-size: 1.2rem;
+        .contador {
+            font-size: 1.1rem;
             font-weight: bold;
+            color: #4a5568;
         }
 
-        /* ALERTA ÉTICO / LÓGICA CONDICIONAL */
-        .alerta-etico {
-            background-color: #fffaf0;
-            border-left: 4px solid #dd6b20;
+        /* AVISO CONDICIONAL ÉTICO */
+        .aviso-etico {
+            background-color: #fff5f5;
+            border-left: 4px solid #e53e3e;
+            color: #9b2c2c;
             padding: 1rem;
             border-radius: 4px;
             font-size: 0.9rem;
-            display: none; /* Escondido por padrão */
+            display: none; /* Manipulado via JavaScript */
         }
     </style>
 </head>
@@ -115,73 +128,70 @@
 
     <!-- HTML SEMÂNTICO -->
     <header>
-        <h1>Plataforma de Engajamento Saudável</h1>
+        <h1>Educação Financeira Digital</h1>
     </header>
 
     <main>
-        <article class="card">
-            <header class="card-header">
-                <h2>Tecnologia e Bem-estar</h2>
-                <p>As interações digitais moldam nossa atenção. Use com moderação.</p>
+        <article class="crypto-card">
+            <header>
+                <h2>Simulador Ativo Bitcoin</h2>
             </header>
 
-            <!-- SEÇÃO DE CONTADORES -->
-            <section class="actions">
-                <div class="btn-wrapper">
-                    <button id="btn-curtir" aria-label="Curtir esta publicação">👍 Curtir</button>
-                    <span class="counter" id="qtd-curtidas" aria-live="polite">0 curtidas</span>
-                </div>
-                
-                <div class="btn-wrapper">
-                    <button id="btn-compartilhar" aria-label="Compartilhar esta publicação">🔄 Compartilhar</button>
-                    <span class="counter" id="qtd-compartilhamentos" aria-live="polite">0 compartilhamentos</span>
-                </div>
+            <!-- IMAGEM COM TAMANHO EXPLÍCITO E TEXTO ALTERNATIVO (ACESSIBILIDADE) -->
+            <img 
+                src="https://unsplash.com" 
+                alt="Moeda física dourada com o símbolo estilizado do Bitcoin sobre fundo tecnológico"
+                class="bitcoin-img"
+            >
+
+            <section class="info-preco">
+                <p>Cotação de Mercado Referencial:</p>
+                <span class="destaque-preco">US$ 64.000,00</span>
             </section>
 
-            <!-- ÁREA DE AVISO DINÂMICO (Acessibilidade com aria-live) -->
-            <div id="aviso-limite" class="alerta-etico" role="alert" aria-live="assertive">
-                <strong>Reflexão:</strong> Você já interagiu bastante com este conteúdo. Que tal fazer uma pausa das telas para descansar a mente?
+            <!-- INTERAÇÃO COM FLEXBOX -->
+            <section class="interacao-container">
+                <button id="btn-comprar" aria-label="Simular compra de frações de Bitcoin">Simular Compra</button>
+                <!-- aria-live avisa leitores de tela sobre a mudança numérica instantaneamente -->
+                <span id="contador-satoshis" class="contador" aria-live="polite">0 Satoshis</span>
+            </section>
+
+            <!-- LÓGICA CONDICIONAL: PAINEL DE ÉTICA E CONSCIENTIZAÇÃO -->
+            <div id="alerta-compulsao" class="aviso-etico" role="alert" aria-live="assertive">
+                <strong>Aviso Consciente:</strong> Você clicou rapidamente várias vezes. Interfaces que facilitam compras em um único clique sem reflexão podem induzir o usuário ao erro ou ao endividamento. Pense bem antes de alocar seu capital!
             </div>
         </article>
     </main>
 
     <footer>
-        <p>&copy; 2026 - Desenvolvido com foco em Ética Digital e Acessibilidade.</p>
+        <p>Interface ética projetada com HTML5, CSS Flexbox e diretrizes de acessibilidade.</p>
     </footer>
 
-    <!-- JAVASCRIPT: MANIPULAÇÃO DO DOM E LÓGICA -->
+    <!-- JAVASCRIPT: MANIPULAÇÃO DO DOM, CONTADORES E LÓGICA CONDICIONAL -->
     <script>
         // Seleção de elementos do DOM
-        const btnCurtir = document.getElementById('btn-curtir');
-        const btnCompartilhar = document.getElementById('btn-compartilhar');
-        const txtCurtidas = document.getElementById('qtd-curtidas');
-        const txtCompartilhamentos = document.getElementById('qtd-compartilhamentos');
-        const painelAviso = document.getElementById('aviso-limite');
+        const btnComprar = document.getElementById('btn-comprar');
+        const contadorSatoshis = document.getElementById('contador-satoshis');
+        const alertaCompulsao = document.getElementById('alerta-compulsao');
 
-        // Variáveis de estado (contadores)
-        let curtidas = 0;
-        let compartilhamentos = 0;
+        // Estados iniciais (Contadores)
+        let totalSatoshis = 0;
+        let cliquesSeguidos = 0;
 
-        // Função genérica para atualizar os textos dos contadores
-        function atualizarInterface() {
-            txtCurtidas.textContent = `${curtidas} curtidas`;
-            txtCompartilhamentos.textContent = `${compartilhamentos} compartilhamentos`;
+        btnComprar.addEventListener('click', () => {
+            // Incrementa as frações simuladas de Bitcoin
+            totalSatoshis += 500;
+            cliquesSeguidos++;
 
-            // Lógica Condicional Ética: Alerta o usuário se a soma de interações passar de 5
-            if (curtidas + compartilhamentos >= 5) {
-                painelAviso.style.display = 'block';
+            // Modifica o DOM exibindo o novo valor
+            contadorSatoshis.textContent = `${totalSatoshis} Satoshis`;
+
+            // LÓGICA CONDICIONAL ÉTICA: 
+            // Se o usuário clicar mais de 4 vezes seguidas sem parar, a interface exibe
+            // um alerta de aviso ético sobre comportamentos e impulsos no mercado digital.
+            if (cliquesSeguidos >= 4) {
+                alertaCompulsao.style.display = 'block';
             }
-        }
-
-        // Implementação dos ouvintes de eventos (Interatividade)
-        btnCurtir.addEventListener('click', () => {
-            curtidas++;
-            atualizarInterface();
-        });
-
-        btnCompartilhar.addEventListener('click', () => {
-            compartilhamentos++;
-            atualizarInterface();
         });
     </script>
 </body>
